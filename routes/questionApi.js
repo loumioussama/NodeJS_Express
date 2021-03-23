@@ -19,6 +19,7 @@ router.post('/questions', async (req, res) => {
 });
 
 router.put('/questions/:id', async (req, res) => {
+    console.log(req.body);
     const updatedQuestion = await Question.findByIdAndUpdate(req.params.id, req.body, {new: true});
     res.json(updatedQuestion);
 });
