@@ -3,8 +3,12 @@ const Question = require('../models/questionSchema');
 const router = express.Router();
 
 router.get('/questions', async(req, res) => {
+    const page=req.query.page;
+    const limit=req.query.limit;
+    const startIndex = (page -1) * limit;
+    const endIndex = page  * limit;
     const questions = await Question.find();
-    res.json(questions);  
+    res.json(questions.slice(startIndex,endIndex));  
 });
 
 router.get('/questions/:id', async (req, res) => {
