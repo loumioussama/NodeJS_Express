@@ -19,7 +19,7 @@ router.get('/questions/:id', async (req, res) => {
     res.json(question);
 });
 
-////GetOneQuestionPagination
+////GetOneQCMPagination
 router.get('/question/:id', async (req, res) => {
     const page=req.query.page;
     const limit=req.query.limit;
@@ -27,6 +27,13 @@ router.get('/question/:id', async (req, res) => {
     const endIndex = page  * limit;
     const question = await Question.findById(req.params.id);
     res.json(question.description.slice(startIndex,endIndex));
+});
+
+////GetOneQuestionByQCM
+router.get('/questions/:idQCM/:idQuestion', async (req, res) => {
+    const questionQCM = await Question.findById(req.params.idQCM)
+    .map(x => x.description.find(x => x._id==req.params.idQuestion));
+    res.json(questionQCM);
 });
 
 ////AddQuestion
