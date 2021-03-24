@@ -15,7 +15,6 @@ router.get('/questions', async(req, res) => {
 
 ////GetOneQuestion
 router.get('/questions/:id', async (req, res) => {
-    console.log(req.params.id);
     const question = await Question.findById(req.params.id);
     res.json(question);
 });
