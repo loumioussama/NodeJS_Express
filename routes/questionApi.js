@@ -19,6 +19,15 @@ router.get('/questions/:id', async (req, res) => {
     res.json(question);
 });
 
+////GetOneQuestionPagination
+router.get('/question/:id', async (req, res) => {
+    const page=req.query.page;
+    const limit=req.query.limit;
+    const startIndex = (page -1) * limit;
+    const endIndex = page  * limit;
+    const question = await Question.findById(req.params.id);
+    res.json(question.description.slice(startIndex,endIndex));
+});
 
 ////AddQuestion
 router.post('/questions', async (req, res) => {
