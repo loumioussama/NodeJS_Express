@@ -2,9 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
+    nameQuiz:String,
+    description: [
+    {
     question: String,
     options: Array,
-    answer: Array,
+    answer: String
+    }
+    ] 
     
    },
    {

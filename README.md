@@ -17,4 +17,4 @@ node app.js # To run the server
 Just go to <http://localhost:3000/> 
 
 ## Usage Example 
-![picture](https://imgur.com/oV9PQkV.png)
+![picture](https://imgur.com/d9sTil2.png)
