@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 const ResultSchema = new Schema({
     idUser:{type: Schema.Types.ObjectId, ref: 'user'},
     idQCM:{type: Schema.Types.ObjectId, ref: 'Question'},
-    answer:String,
+    answers:[
+        {
+            idQuestion:String,
+            answer:String
+        }
+    ],
     score:{
         type:Number,
         default:0
