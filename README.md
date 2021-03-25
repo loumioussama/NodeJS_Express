@@ -28,3 +28,6 @@ Add Test
 
 GEt Result Test
 ![picture](https://imgur.com/L3ghp9s.png)
+
+Update Score Test
+![picture](https://imgur.com/L3ghp9s.png)
