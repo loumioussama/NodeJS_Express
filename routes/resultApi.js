@@ -40,7 +40,6 @@ router.get('/results/:idTest/:idQCM/:idQuestion',passport.authenticate("bearer",
 ////CalculeScoreTest
 var score=0;
 router.put('/results/:idTest/:idQCM', passport.authenticate("bearer", { session: false }), async (req, res) => {
-    const userTest= await  Result.findByIdAndUpdate(req.params.idTest ,{new:true});
     const resultQCM = await Result.findById (req.params.idTest)
     .map(x => x.answers.map(x => x.answer));
     console.log(resultQCM);
@@ -50,7 +49,6 @@ router.put('/results/:idTest/:idQCM', passport.authenticate("bearer", { session:
     const ScoreTest = await answerQCM.map((x,index) => {
        resultQCM.map((y,j) => {
            if(index==j){
-               console.log(x);
            if(x==y){
                 score++;
            }
@@ -59,11 +57,10 @@ router.put('/results/:idTest/:idQCM', passport.authenticate("bearer", { session:
            }}
        });
     } );
-    console.log("final Test"+score);
+    const userTest= await  Result.findById(req.params.idTest);
     userTest.score=score;
-    console.log(userTest);
-
-    res.json( userTest );
+     const finalTest=  await Result.findByIdAndUpdate(req.params.idTest, userTest , {new:true});
+    res.json( finalTest );
 });
 
 
